@@ -27,9 +27,7 @@ public interface IUserService {
 
 	UserResponse getById(int id) throws UserException;
 
-	List<UserDto> findAll();
-
 	User forgotPassword(String email, String password) throws UserException;
 
-	
+	List<UserDto> findAll();
 }

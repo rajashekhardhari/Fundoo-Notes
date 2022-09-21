@@ -1,10 +1,16 @@
 package com.bridgelabz.fundoonote.user.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.bridgelabz.fundoonote.note.models.Note;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,5 +41,8 @@ public class User {
 	private String password;
 	@Column(name = "User_Verified")
 	private Boolean isVerified = false;
+	
+	@OneToMany(mappedBy = "user")
+	List<Note> note;
 
 }

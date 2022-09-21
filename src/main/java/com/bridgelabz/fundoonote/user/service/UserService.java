@@ -1,12 +1,13 @@
 package com.bridgelabz.fundoonote.user.service;
 
+
 import java.util.List;
 import java.util.Optional;
+import java.lang.reflect.Type;
 
-import org.modelmapper.TypeToken;
 
-import org.apache.catalina.connector.Response;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.bridgelabz.fundoonote.user.dto.LoginDto;
 import com.bridgelabz.fundoonote.user.dto.RegisterDto;
 import com.bridgelabz.fundoonote.user.dto.UserDto;
-
 import com.bridgelabz.fundoonote.user.exception.UserException;
 import com.bridgelabz.fundoonote.user.models.User;
 import com.bridgelabz.fundoonote.user.repository.UserRepo;
@@ -131,12 +131,14 @@ public class UserService implements IUserService {
 
 	@Override
 	public List<UserDto> findAll() {
-		List<User> user = userRepo.findAll();
-	    Type userType = new TypeToken<List<UserDto>>() {
+		
+			List<User> user = userRepo.findAll();
+			Type userType = new TypeToken<List<UserDto>>() {
 
-		}.getType();
-		List<UserDto> userDto = modelMapper.map(user, userType);
-		return userDto;
+			}.getType();
+			List<UserDto> UserDto = modelMapper.map(user, userType);
+		
+		return null;
 	}
 
 }

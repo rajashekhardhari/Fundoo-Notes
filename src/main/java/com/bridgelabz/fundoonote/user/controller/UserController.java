@@ -2,7 +2,6 @@ package com.bridgelabz.fundoonote.user.controller;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ import com.bridgelabz.fundoonote.user.utility.UserResponse;
 
 @RestController
 @RequestMapping("/home")
-public class Controller {
+public class UserController {
 
 	@Autowired
 	private IUserService userService;
@@ -47,11 +46,9 @@ public class Controller {
 	@GetMapping("/verify")
 	public ResponseEntity<UserResponse> verification(@RequestParam("token") String token) {
 		UserResponse result = userService.userVerification(token);
-		
+
 		return new ResponseEntity<UserResponse>(result, HttpStatus.OK);
 	}
-
-	
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<UserResponse> deleteUser(@PathVariable Integer id) throws UserException {
@@ -68,18 +65,17 @@ public class Controller {
 		return response;
 	}
 
-	@GetMapping("/getdata")
-	public ResponseEntity<List<UserDto>> getList() {
-		List<UserDto> getdetails = userService.findAll();
-		return new ResponseEntity<List<UserDto>>(getdetails, HttpStatus.OK);
-	}
-
-
 	@GetMapping("/getdatabyid")
 	public ResponseEntity<UserResponse> getUserById1(@RequestParam int id) throws UserException {
 		ResponseEntity<UserResponse> response = new ResponseEntity<UserResponse>(userService.getById(id),
 				HttpStatus.OK);
 		return response;
+	}
+	
+
+	@GetMapping("/get")
+	public List<UserDto> getList() {
+		return userService.findAll();
 	}
 
 }
