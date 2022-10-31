@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoonote.user.exception;
+package com.bridgelabz.fundoonote.label.exception;
 
 import java.time.LocalDateTime;
 
@@ -10,11 +10,11 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class UserGlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class LabelGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(UserException.class)
-	public ResponseEntity<Object> userNotFoundResponse(UserException e, WebRequest request) {
-		UserErrorResponse errorResponse = new UserErrorResponse(LocalDateTime.now(), e.getMessage());
+	@ExceptionHandler(LabelException.class)
+	public ResponseEntity<Object> userNotFoundResponse(LabelException e, WebRequest request) {
+		LabelErrorResponse errorResponse = new LabelErrorResponse(LocalDateTime.now(), e.getMessage());
 		return handleExceptionInternal(e, errorResponse, null, HttpStatus.NOT_FOUND, request);
 	}
 

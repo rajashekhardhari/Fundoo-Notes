@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoonote.user.exception;
+package com.bridgelabz.fundoonote.label.exception;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserErrorResponse {
+public class LabelErrorResponse {
 
 	private LocalDateTime timeStamp;
 	private String message;

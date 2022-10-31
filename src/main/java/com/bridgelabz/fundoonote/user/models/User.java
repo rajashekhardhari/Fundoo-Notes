@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+//import com.bridgelabz.fundoonote.label.models.Label;
 import com.bridgelabz.fundoonote.note.models.Note;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +25,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString
-
-//This is called as POJO Class
-//POJO - Plain Old Java Object
 public class User {
 
 	@Id
@@ -43,6 +43,11 @@ public class User {
 	private Boolean isVerified = false;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	List<Note> note;
+	
+//	@OneToMany(mappedBy = "user")
+//	@JsonIgnore
+//	List<Label> label;
 
 }

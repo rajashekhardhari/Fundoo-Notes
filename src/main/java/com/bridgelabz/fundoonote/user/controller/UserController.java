@@ -1,10 +1,13 @@
 package com.bridgelabz.fundoonote.user.controller;
 
+import java.awt.PageAttributes.MediaType;
 import java.util.List;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +26,14 @@ import com.bridgelabz.fundoonote.user.service.IUserService;
 import com.bridgelabz.fundoonote.user.utility.UserResponse;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/home")		
+@CrossOrigin("*")
 public class UserController {
+	
 
 	@Autowired
 	private IUserService userService;
-
+	
 	@PostMapping("/login")
 	public ResponseEntity<UserResponse> login(@RequestBody LoginDto loginDto) throws UserException {
 		ResponseEntity<UserResponse> response = new ResponseEntity<UserResponse>(userService.login(loginDto),
@@ -51,7 +56,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<UserResponse> deleteUser(@PathVariable Integer id) throws UserException {
+	public ResponseEntity<UserResponse> deleteUser(@RequestParam int id) throws UserException {
 		ResponseEntity<UserResponse> response = new ResponseEntity<UserResponse>(userService.deleteUser(id),
 				HttpStatus.OK);
 		return response;
